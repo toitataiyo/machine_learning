@@ -11,6 +11,21 @@ class Bandit:
         else:
             return 0
 
+class Agent:
+    def __init__(self, epsilon, action_size=10):
+        self.epsilon = epsilon
+        self.Qs = np.zeros(action_size)
+        self.ns = np.zeros(action_size)
+
+    def update(self, action, reward):
+        self.ns[action] += 1
+        self.Qs[action] += (reward - self.Qs[action]) / self.ns[action]
+    
+    def get_action(self):
+        if np.random.rand() < self.epsilon:
+            return np.random.randint(0, len(self.Qs))
+        return np.argmax(self.Qs)
+
 bandit = Bandit()
 Q = 0
 
@@ -18,3 +33,16 @@ for n in range(1, 11):
     reward = bandit.play(0)
     Q += (reward - Q) / n
     print(Q)
+
+print("10台のスロットマシンを考慮する")
+bandit = Bandit()
+Qs = np.zeros(10)
+ns = np.zeros(10)
+
+for n in range(10):
+    action = np.random.randint(0, 10)
+    reward = bandit.play(action)
+
+    ns[action] += 1
+    Qs[action] += (reward - Qs[action]) / ns[action]
+    print(Qs)
