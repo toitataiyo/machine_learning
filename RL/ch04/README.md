@@ -1,1 +1,3 @@
-## このディレクトリで作業を行うときは、ブランチをDPに切り替える
+## The goal of this directory is learning Dynamic Programing
+
+When you change code in this directory, checkout DP branch.
