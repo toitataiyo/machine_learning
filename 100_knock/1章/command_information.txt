@@ -13,3 +13,28 @@ pd.merge(A, B, on="C", how="left") AとBを横方向に結合する
 df["A"] = df["B"] * df["C"] dfにBとCを掛け合わせた列Aを追加する
 ・ノック6 : データ検算
 検算できる列があったら検算を行うようにする
+df["A"].sum() : A列の合計値を算出する
+・ノック7 : 各種統計量の把握
+df.isnull() : 各列について欠損値NaNの有無でTrue/Falseで返す
+df.describe() : 数値データの各種統計量を算出してくれる, データ件数(count), 平均値(mean), 標準偏差(std), 最小値(min), 四分位数(25%, 75%)など
+・ノック8 : データを月別で見れるようにする
+pd.to_datetime(df["日時文字列], format="") : 日時を表した文字列の列をdatetime64[ns]型に変換できる
+df["Timestamp型"].dt : dtは列全体を一括処理できる, メソッドが用意されている
+    dt.strftime() : Timestamp型を任意のフォーマットの文字列に変換可能
+        例 2017-11-01 12:24:00について strftime("%Y/%m) → 2017/11
+                                     strftime("%Y/%m/%d") → 2017/11/01
+df.groupby("A") : A列について同じ値を持つデータをまとめ、それぞれの塊に共通の操作を行いたい時に使う
+    ノック内の例なら月毎のデータをまとめた塊にして、各塊ごとの合計値を算出
+    df.groupby("A").sum()やdf.groupby("A").mean()などの使い方が可能
+    df.groupby(["A", "B"])というふうにまとめたい列が複数ある場合はリスト型で指定できる
+    特定の列だけ見たい時はdf.groupby("A").sum()["B"]みたいな感じで使える
+・ノック9 : 月別、商品別でのデータ集計
+pd.pivot_table(df, index="A", columns="B", values=["C", "D"], aggfunc="sum") : 列データと行データのクロス集計
+    index="A", 行データを指定
+    columns="B", 列データを指定
+    values=["C", "D"], クロス集計するデータを指定
+    aggfunc="sum", クロス~~の関数を設定, meanとか
+・ノック10 : 商品別の売上推移の可視化
+pivot_tabelを使用
+pltはこのレベルなら説明いらないでしょう
+
