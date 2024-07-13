@@ -28,7 +28,8 @@ df.loc[] : dfについて条件を満たした行、列を抽出できる
     df["A"].sort_values(ascending=True) : Aを基準にsort
         ascending=True : Trueなら昇順, 降順
 ・ノック16 顧客名の揺れ補正
-
+df["A"].astype("str") : Aの行(列)の要素を指定した型にNaNも含めて変換 NaNはnanという文字列に変換
+    df["A"].str.isdight() : 文字列が数字かどうか判定
 ・ノック17 日付の揺れ補正
 
 ・ノック18 顧客名をキーにしてデータ結合
