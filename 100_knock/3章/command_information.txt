@@ -13,15 +13,29 @@ pd.to_datetime() : この処理を行うと各要素はdatetime型になるの�
 ・ノック24 最新顧客データの基礎集計
 bool型の論理演算 : and, or, notを使う
 ビット型の論理演算 : &(and), |(or), ^(XOR)
-
+NaT : datetime型の欠損値, 今回の場合は退会していない顧客
 ・ノック25　利用履歴データを集計
-
+df.groupby(["A", "B"], as_index=False) : groupbyの引数にはリストを渡すことが可能
+    as_index=False : groupbyはデフォルトではグループラベル(この例ならA)がindexになる, グループラベルをインデックスにしたくない場合に使用
+df.rename(columns={"A":"B"}, inplace=True) : 列名の変更 (この場合はAからBに変更)
+    inplace=True : 使用したdf自体を変更、デフォルト(False)では新しいdfが作成される
+del df["A"] : 作成した変数やオブジェクトを削除するときにdelを使う del df["A"]で削除したい列(この例ならA)を削除できる
+df.groupby().agg(["mean", "min"]) : aggはグループ化したものに複数の計算処理を適用できる
+df.reset_index(drop=False) : インデックスの振り直しを行う
+    drop=False : 元のインデックスを残すかどうか、drop=Falseなら元のインデックスが残る
 ・ノック26　利用履歴データから定期利用フラグの作成
-
+df.Series.dt.weekday : Monday = 0, Sunday = 6の曜日
+df.where() : Trueのデータはそのままで、Falseのみを置換する, whereには比較演算やbool値を要素とするリスト, 文字列に対する条件などを指定可能
+    第二引数 : 第二引数(other)にスカラー値を設定するとFalseの要素がその値に置換される
 ・ノック27　顧客データと利用履歴データの結合
-
+pd.merge(A, B) : Aはdf, Bはseriesとかでもいける
 ・ノック28　会員期間
-
+df["A"].fillna() : dfの欠損値NaNをなんらかの値に置換する
+df.iloc[1] : データフレームのインデックス (行番号) で行を取得
+dateutil.relativedelta.relativedelta(A, B) : relativedelta型の年月について、年、月、日にちごとに差を計算
+    relativedalta.years : relativedelta型のデータの年の部分の数字を取得
 ・ノック29　顧客行動の各種統計量を把握しよう
-
+df["A"].describe() : 指定したseries (この例ならA) の各種統計量を計算
+plt.hist() : 与えられた引数を元にヒストグラムを作成
 ・ノック30　退会ユーザと継続ユーザの違いの把握
+df.loc[A==0] : locは条件式に従っている行などを抜き出し可能
