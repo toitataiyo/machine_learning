@@ -19,10 +19,15 @@ pd.concat([A, B], axis=1) : dfやseriesを連結
 df.groupby(as_index=False) : グループラベルをインデックスにしたくないときはas_index=Falseを指定
 ・ノック36 : 翌月の利用回数予測を行うためのデータ準備
 df.loc[].copy() : loc[]で抜き出した部分を明示的にコピーする
+df.dropna() : 一つでもNaNが含まれる行や列を削除 (デフォルトは行)
 ・ノック37 : 特徴となる変数の付与
-
+dateutil.relativedelta.relativedelta(A, B) : relativedelta型の年月について、年、月、日にちごとに差を計算
 ・ノック38 : 来月の利用回数を予測するモデルを作成
-
+sklearn.linear_model.LinearRegression() : 線形回帰モデルの利用, 今回はmodelとする
+    model.fit(A, B) : AとBを使って学習を行う
+    model.score(説明変数, 目的変数) : 決定係数を出力 
+sklearn.model_selection.train_test_split(A, B) : データセットを学習用データと評価用データに分割, デフォルトでは学習用が75%, 評価用が25%
 ・ノック39 : モデルに寄与している変数の確認
-
+model.coef_ : 線形回帰における説明変数の係数
 ・ノック40 : 来月の利用回数の予測
+model.predict() : 構築した予測モデルから目的変数を予測する
