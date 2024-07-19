@@ -1,0 +1,28 @@
+・ノック31 : データの読み込み
+df.isnull().sum() : デフォルトのsumは列ごとの合計を算出
+・ノック32 : クラスタリングにより顧客をグループ化
+sklearn.preprocessing.StandardScaler() : データセットの標準化(元のデータの平均を0, 標準偏差を1に変換する), 今回は略称としてscとする
+    sc.fit_transform : データを変換するために必要な統計データ(標準偏差など)を計算し、それを元にスケーリングを実行
+sklearn.cluster.KMeans(n_clusters=4, random_state=0) : K-平均法によるクラスタリングを実行
+    n_clusters=4 : 何個のクラスタに分割するか
+    random_state=0 : 乱数のシード値を固定
+・ノック33 : クラスタリング結果の分析
+df.columns = ["A", "B", "C"] : すべてのカラムの名称を変更する
+・ノック34 : クラスタリング結果の可視化
+sklearn.decomposition.PCA(n_components=2) : 次元削減の手法の一つであるPCAによる解析
+    n_components=2 : 主成分の数を指定
+PCA.fit(A) : 指定したデータについてPCA解析を実行
+pd.DataFrame(A) : 二次元データをデータフレーム形式に変換
+・ノック35 : クラスタリング結果を元にした退会顧客の傾向
+pd.concat([A, B], axis=1) : dfやseriesを連結
+    axis=1 : 横方向に連結する、0なら縦方向に連結
+df.groupby(as_index=False) : グループラベルをインデックスにしたくないときはas_index=Falseを指定
+・ノック36 : 翌月の利用回数予測を行うためのデータ準備
+df.loc[].copy() : loc[]で抜き出した部分を明示的にコピーする
+・ノック37 : 特徴となる変数の付与
+
+・ノック38 : 来月の利用回数を予測するモデルを作成
+
+・ノック39 : モデルに寄与している変数の確認
+
+・ノック40 : 来月の利用回数の予測
