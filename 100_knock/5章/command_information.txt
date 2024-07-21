@@ -1,19 +1,30 @@
 ・ノック41 : データの読み込み、整形
 tmp : 一時ファイル、一時データの変数として採用される
 ・ノック42 : 退会前月の退会顧客データの作成
-
+relativedelta(months=1) : 1ヶ月という意味 (monthsは相対値)
+df.series.astype(str) : seriesを文字列型に変換
+dropna(subset=["A"]) : 指定したsubsetで指定した列にNaNが含まれる行を削除
 ・ノック43 : 継続顧客のデータ作成
-
+df.sample(frac=1, random_state=0) : データフレームの行または列をランダムにサンプリングする
+    frac=1 : 抽出する行や列の割合を指定 1は100%
+    random_state=0 : 乱数指定
+df.drop_duplicates(subset=["A"]) : 重複した行を削除
+    subset=["A"] : 指定した列で重複を判定
+pd.concat( , ignore_index=True) : 結合する軸方向のラベルがリセットされ、0から振り直す
 ・ノック44 : 予測する月の在籍期間作成
-
+特になし
 ・ノック45 : 欠損値除去
-
+特になし
 ・ノック46 : 文字列型の変数を処理できるように整形
-
+pd.get_dummies(A) : カテゴリ刈るデータをダミー変数に変換する、カテゴリー分けされたデータを変数に変換 (男 : 0, 女性 : 1)
 ・ノック47 : 決定木を用いた退会予測モデル作成
-
+DecisionTreeClassifier(random_state=0) : 決定木分析を行う
 ・ノック48 : 予測モデルの評価, モデルのチューニング
-
+DecisionTreeClassifier(random_state=0, max_depth=5)
+    max_depth=5 : 決定木のツリーの最大深度, デフォルトはNoneとなっており、Noneのノードはすべてのリーフが1になるまで展開される、通常の場合は過学習を防ぐために決定木の深さの最大値を決定する
 ・ノック49 : モデルに寄与している変数の確認
-
+model.feature_importances_ : 各特徴量の重要度, 決定木ではある特徴量による分類の前後で乱雑さがどれほど減少するかで特徴量の選定を行なっていた。この減少幅の特徴量ごとの平均　ついでに減少幅は木の構築時に計算されている
+tree.plot_tree(model, feature_names) : 木構造をplotしてくれる, matplotlibなどでいろいろ操作可能
 ・ノック50 : 顧客の退会予測
+list.extend(list) : listの末尾に引数に渡された別のリストを追加してリストを拡張する
+model_proba() : 各クラス確率の推定値を出力
