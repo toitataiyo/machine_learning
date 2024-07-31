@@ -11,7 +11,8 @@ Graph.add_edge("A", "B") : ノードとノードを繋ぐエッジの追加, こ
 nx.draw(Graph, pos) : グラフオブジェクトの描画
     pos : 辞書形式を指定 {ノード名 : [X座標, Y座標]}
 ノック54 : ネットワークのノード(頂点)の追加
-
+nx.draw(Graph, pos, with_labels=True)
+    with_labels=True : 頂点につけたラベルを表示する
 ノック55 : ルートの重みづけの実施
 
 ノック56 : 輸送ルート情報の読み込み
