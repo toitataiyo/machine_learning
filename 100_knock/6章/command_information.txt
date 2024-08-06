@@ -14,7 +14,7 @@ nx.draw(Graph, pos) : グラフオブジェクトの描画
 nx.draw(Graph, pos, with_labels=True)
     with_labels=True : 頂点につけたラベルを表示する
 ノック55 : ルートの重みづけの実施
-
+特になし
 ノック56 : 輸送ルート情報の読み込み
 
 ノック57 : 輸送ルート情報からネットワークの可視化
